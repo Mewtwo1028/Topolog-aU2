@@ -188,3 +188,11 @@ STANDBY 1 IP 192.168.87.1
 STANDBY 1 PRIORITY 180
 STANDBY 1 PREEMPT
 
+!DHCP SNOOPING IMPLEMENTACIÓN
+------------------------------------------------------------------------------------------
+!Osmar: Canal de puertos, Servicios, Sacar puertos a vlan reserva, port security
+!Santi: HSRP, Sticky,  
+!CÉSAR: CONFIGURACIÓN BÁSICA Y SSH, DHCP SNOOPING
+!Jair: Ruteo, Conf. Inalámbrica
+!
+
