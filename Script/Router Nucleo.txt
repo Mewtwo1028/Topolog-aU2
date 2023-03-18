@@ -1,0 +1,34 @@
+----------------------R_NUCLEO----------------------------
+
+IPV6 UNICAST-ROUTING
+
+
+INT G0/0
+IP ADD 192.168.128.2 255.255.255.0
+IPV6 ADD 2002:BABA:BEBE:128::2/64
+
+INT SE0/0/0
+IP ADD 192.168.138.2 255.255.255.0
+IPV6 ADD 2002:BABA:BEBE:138::2/64
+
+INT SE0/1/0
+IP ADD 192.168.148.2 255.255.255.0
+IPV6 ADD 2002:BABA:BEBE:148::2/64
+
+-----------EIGRP R_NUCLEO------------
+
+router eigrp 743
+eigrp router-id 3.3.3.3
+network 192.168.148.0 0.0.0.255
+network 192.168.138.0 0.0.0.255
+network 192.168.128.0 0.0.0.255
+
+no auto-sum
+exit
+
+-----------EIGP IPV6------------
+ipv6 router eigrp 743
+no shut
+exit
+int G0/0
+ipv6 eigrp 743
