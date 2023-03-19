@@ -1,34 +1,63 @@
-----------------------R_NUCLEO----------------------------
+!----------------------R_NUCLEO----------------------------
+en
+conf t
+ipv6 unicast-routing
+hostname NUCLEO
+line console 0
+password cisco
+login
+login synchronous
+exit
 
-IPV6 UNICAST-ROUTING
+enable secret class
+service password-encryption
+banner motd $PROHIBIDO ENTRAR A ESTE EQUIPO AL PERSONAL NO AUTORIZADO$
 
+!SSH
+ip domain-name cisco.com
+crypto key generate rsa
+1024
+username admin password cisco
 
+!Lineas virtuales
+line vty 0 4
+transport input ssh
+login local
+exit
+
+!----------------Configurar interfaces-----------
 INT G0/0
-IP ADD 192.168.128.2 255.255.255.0
+IP ADD 192.168.128.2 255.255.255.252
 IPV6 ADD 2002:BABA:BEBE:128::2/64
+ipv6 eigrp 743
+no shut
+exit
 
 INT SE0/0/0
-IP ADD 192.168.138.2 255.255.255.0
+IP ADD 192.168.138.2 255.255.255.252
 IPV6 ADD 2002:BABA:BEBE:138::2/64
+ipv6 eigrp 743
+no shut
+exit
 
 INT SE0/1/0
-IP ADD 192.168.148.2 255.255.255.0
+IP ADD 192.168.148.2 255.255.255.252
 IPV6 ADD 2002:BABA:BEBE:148::2/64
+ipv6 eigrp 743
+no shut
+exit
 
------------EIGRP R_NUCLEO------------
+!-----------EIGRP IPv4------------
 
 router eigrp 743
 eigrp router-id 3.3.3.3
-network 192.168.148.0 0.0.0.255
-network 192.168.138.0 0.0.0.255
-network 192.168.128.0 0.0.0.255
-
+network 192.168.148.0 0.0.0.3
+network 192.168.138.0 0.0.0.3
+network 192.168.128.0 0.0.0.3
 no auto-sum
 exit
 
------------EIGP IPV6------------
+!-----------EIGP IPV6------------
 ipv6 router eigrp 743
 no shut
 exit
-int G0/0
-ipv6 eigrp 743

@@ -304,21 +304,3 @@ ipv6 eigrp 743
 !Santi: HSRP, Sticky,  
 !CÉSAR: CONFIGURACIÓN BÁSICA Y SSH, DHCP SNOOPING
 !Jair: Ruteo, Conf. Inalámbrica
-!
-
-
-LINE CON 0
-LOGIN LOCAL 
-USERNAME cesar PASSWORD cisco
-ip domain-name cisco.com
-enable secret class
-service password-encryption 
-crypto  key generate rsa
-1024
-
-line vty 0 4
-login local 
-transport input ssh
-username cesar password cisco
-
-
