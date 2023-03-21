@@ -86,3 +86,16 @@ exit
 INT VLAN 88
 IP ADD 192.168.88.2 255.255.255.0
 ip default-gateway 192.168.88.1
+
+
+!-------------------VLAN RESERVA---------------------------------
+vlan 82
+name RESERVA
+int range fa0/10-24
+sw mo acc
+sw acces vlan 82
+SHUT
+INT RANGE G0/1-2
+SW MO ACC
+SW ACC VLAN 82
+SHUT
