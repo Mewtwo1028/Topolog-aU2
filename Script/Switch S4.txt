@@ -1,7 +1,7 @@
-!------------------------S2--------------
+!------------------------S4--------------
 enable
 conf t
-hostname S2
+hostname S4
 ip dhcp snooping
 
 line console 0
@@ -27,70 +27,52 @@ login local
 exit
 
 !---------------------crear vlans-------------
-vlan 40
-name cafeteria
-vlan 50
-name biblioteca
-vlan 60
-name iguanera
-vlan 89
+vlan 100
+name WEB-DNS
+vlan 110
+name FTP
+vlan 120
+name R-INALAMBRICO
+vlan 86
 name admon
 vlan 500
 name reserva
 
-!---------------Configurar spanning tree----------------
-int range fa0/4-6
-ip dhcp snooping trust
-sw mode trunk
-channel-group 2 mode passive
-int po2
-exit
-
-int range fa0/7-9
-ip dhcp snooping trust
-sw mode trunk
-channel-group 3 mode desirable
-int po3
-exit
-
 !---------------Asignar interfaces a las vlans------------
+!AQUI VA CONECTADO EL WEB/DNS
 int fa0/1
 ip dhcp snooping limit rate 6
-sw mo acc
-sw acc vlan 40
+sw mode acc
+sw acc vlan 100
 exit
 
 int fa0/2
 ip dhcp snooping limit rate 6
-sw mo acc
-sw acc vlan 50
+sw mode acc
+sw acc vlan 110
 exit
 
-int fa0/3
+int G0/2
 ip dhcp snooping limit rate 6
-sw mo acc
-sw acc vlan 60
+sw mode acc
+sw acc vlan 120
 exit
 
-int range g0/1-2
+int g0/1
+ip dhcp snooping trust
+sw mode trunk
+exit
+
+int range fa0/3-24
 sw acc vlan 500
 shut
 exit
 
 !--------------Crear interfaz virtual de administracion------------
-INT VLAN 89
-IP ADD 192.168.89.2 255.255.255.0
-ip default-gateway 192.168.89.1
+INT VLAN 86
+IP ADD 192.168.86.2 255.255.255.0
+ip default-gateway 192.168.86.1
 
-!-------------------VLAN RESERVA---------------------------------
-int range fa0/10-24
-sw acc vlan 500
-shut
-exit
-int range G0/1-2
-sw acc vlan 500
-shut
-exit
 
 !----------ACLS--------------
 ip access-list standard ADMIN-HOST

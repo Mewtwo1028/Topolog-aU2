@@ -67,15 +67,10 @@ sw mode acc
 sw acc vlan 80
 exit
 
-int fa0/6
+int fa0/24
 ip dhcp snooping limit rate 6
 sw mode acc
 sw acc vlan 90
-exit
-
-int range fa0/10-23
-sw acc vlan 500
-shut
 exit
 
 INT range G0/1-2
@@ -89,13 +84,19 @@ ip default-gateway 192.168.87.1
 
 
 !-------VLAN RESERVA-----------------------
-vlan 82
-name RESERVA
-int range fa0/10-24
-sw mo acc
-sw acces vlan 82
-SHUT
-INT RANGE G0/1-2
-SW MO ACC
-SW ACC VLAN 82
-SHUT
+int range fa0/10-23
+sw acc vlan 500
+shut
+exit
+
+
+!----------ACLS--------------
+ip access-list standard ADMIN-HOST
+remark lista de acceso para el host admin
+permit 192.168.20.5
+deny any
+exit
+
+line vty 0 4
+access-class ADMIN-HOST in
+exit
