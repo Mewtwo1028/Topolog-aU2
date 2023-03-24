@@ -6,7 +6,6 @@ hostname EXTERNO
 line console 0
 password cisco
 login
-login synchronous
 exit
 
 enable secret class
@@ -29,6 +28,7 @@ exit
 INT G0/0
 IP ADD 192.168.128.1 255.255.255.252
 IPV6 ADD 2002:BABA:BEBE:128::1/64
+ipv6 add fa80::4 link local
 ipv6 eigrp 743
 no shut
 exit
@@ -38,24 +38,28 @@ IPV6 EIGRP 743
 ENCAPSULATION DOT1Q 86
 IP ADD 192.168.86.1 255.255.255.0
 IPV6 ADD 2002:BABA:BEBE:86::1/64
+ipv6 add fa80::4 link local
 
 INT G0/1.100
 IPV6 EIGRP 743
 ENCAPSULATION DOT1Q 100
 IP ADD 192.168.100.1 255.255.255.0
 IPV6 ADD 2002:BABA:BEBE:100::1/64
+ipv6 add fa80::4 link local
 
 INT G0/1.110
 IPV6 EIGRP 743
 ENCAPSULATION DOT1Q 110
 IP ADD 192.168.110.1 255.255.255.0
 IPV6 ADD 2002:BABA:BEBE:110::1/64
+ipv6 add fa80::4 link local
 
 INT G0/1.120
 IPV6 EIGRP 743
 ENCAPSULATION DOT1Q 120
 IP ADD 192.168.120.1 255.255.255.0
 IPV6 ADD 2002:BABA:BEBE:120::1/64
+ipv6 add fa80::4 link local
 
 !-----------EIGRP IPv4------------
 
@@ -71,6 +75,7 @@ exit
 
 !-----------EIGP IPV6------------
 ipv6 router eigrp 743
+eigrp router-id 4.4.4.4
 no shut
 exit
 
