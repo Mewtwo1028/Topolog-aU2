@@ -7,7 +7,6 @@ ip dhcp snooping
 line console 0
 password cisco
 login
-login synchronous
 exit
 
 enable secret class

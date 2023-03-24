@@ -7,7 +7,6 @@ ip dhcp snooping
 line console 0
 password cisco
 login
-login synchronous
 exit
 
 enable secret class
@@ -37,6 +36,16 @@ vlan 87
 name admon
 vlan 500
 name reserva
+
+!------------------Las otras vlans---------------
+vlan 10
+vlan 20
+vlan 30
+vlan 40
+vlan 50
+vlan 60
+vlan 87
+vlan 88
 
 !---------------Configurar spanning tree----------------
 int range fa0/1-3
