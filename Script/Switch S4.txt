@@ -7,7 +7,6 @@ ip dhcp snooping
 line console 0
 password cisco
 login
-login synchronous
 exit
 
 enable secret class
@@ -84,10 +83,3 @@ exit
 line vty 0 4
 access-class ADMIN-HOST in
 exit
-
-!---------PORT SECURITY---------------
-INT G0/2
-SW MO ACC
-SW PORT-SECURITY
-SW PORT-SECURITY MAX 1
-SW PORT-SECURITY MAC-ADDRESS STICKY 

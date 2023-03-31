@@ -6,7 +6,6 @@ hostname NUCLEO
 line console 0
 password cisco
 login
-login synchronous
 exit
 
 enable secret class
@@ -29,6 +28,7 @@ exit
 INT G0/0
 IP ADD 192.168.128.2 255.255.255.252
 IPV6 ADD 2002:BABA:BEBE:128::2/64
+ipv6 add fa80::3 link-local
 ipv6 eigrp 743
 no shut
 exit
@@ -36,6 +36,7 @@ exit
 INT SE0/0/0
 IP ADD 192.168.138.2 255.255.255.252
 IPV6 ADD 2002:BABA:BEBE:138::2/64
+ipv6 add fa80::3 link-local
 ipv6 eigrp 743
 no shut
 exit
@@ -43,6 +44,7 @@ exit
 INT SE0/1/0
 IP ADD 192.168.148.2 255.255.255.252
 IPV6 ADD 2002:BABA:BEBE:148::2/64
+ipv6 add fa80::3 link-local
 ipv6 eigrp 743
 no shut
 exit
@@ -59,6 +61,7 @@ exit
 
 !-----------EIGP IPV6------------
 ipv6 router eigrp 743
+eigrp router-id 3.3.3.3
 no shut
 exit
 
