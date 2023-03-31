@@ -7,6 +7,7 @@ ip dhcp snooping
 line console 0
 password cisco
 login
+login synchronous
 exit
 
 enable secret class
@@ -107,3 +108,18 @@ exit
 line vty 0 4
 access-class ADMIN-HOST in
 exit
+
+
+!DEMÁS VLANS
+VLAN 10
+VLAN 20
+VLAN 30
+VLAN 40
+VLAN 50
+VLAN 60
+vlan 70
+vlan 80
+vlan 90
+VLAN 87
+VLAN 88
+VLAN 89
