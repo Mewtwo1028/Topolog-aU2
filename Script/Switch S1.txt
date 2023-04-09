@@ -36,6 +36,7 @@ vlan 88
 name admon
 vlan 500
 name reserva
+exit
 
 !---------------Configurar spanning tree----------------
 int range fa0/1-3
@@ -71,16 +72,6 @@ sw mo acc
 sw acc vlan 30
 exit
 
-int range fa0/10-24
-sw acc vlan 500
-shut
-exit
-
-int range g0/2
-sw acc vlan 500
-shut
-exit
-
 !--------------Crear interfaz virtual de administracion------------
 INT VLAN 88
 IP ADD 192.168.88.2 255.255.255.0
@@ -92,6 +83,7 @@ int range fa0/10-24
 sw acc vlan 500
 shut
 exit
+
 int range G0/1-2
 sw acc vlan 500
 shut
