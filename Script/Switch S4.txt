@@ -83,3 +83,10 @@ exit
 line vty 0 4
 access-class ADMIN-HOST in
 exit
+
+!---Amarrar el puerto al inalámbrico----
+int g0/2
+sw mo acc
+sw port-security
+sw port-security max 1
+switchport port-security mac-address sticky
